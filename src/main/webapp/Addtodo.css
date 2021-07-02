@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.wrap {
+	sborder :1px solid red;
+	margin : 0 auto;
+	width: 500px;
+	height : auto;
+}
+
+.add-title {
+	text-align : center ;
+	font-weight : bold;
+}
+.input {
+	margin : 20px 0px;
+}
+
+.lastbox {
+	display : flex;
+}
+.before {
+	width : 100px;
+	text-align : center;
+	border : 1px solid black;
+	margin-right : auto;
+}
+.submit,.clear{
+	width : 100px;
+	text-align : center;
+	margin-left : 10px;
+	border : 1px solid black;
+	flex: none;
+}
