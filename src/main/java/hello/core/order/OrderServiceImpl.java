@@ -1,9 +1,12 @@
 package hello.core.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
 //  private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -17,6 +20,7 @@ public class OrderServiceImpl implements OrderService{
     return memberRepository;
   }
   
+  @Autowired
   public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
     this.discountPolicy = discountPolicy;
     this.memberRepository = memberRepository;
