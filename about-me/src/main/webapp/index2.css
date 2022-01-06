@@ -1,0 +1,10 @@
+@charset "UTF-8";
+header, main, footer {
+	border : 3px solid black;
+	text-align : center;
+}
+.wrap{
+	margin : 0 aut0;
+	margin-width : 0 50%;
+	
+}
