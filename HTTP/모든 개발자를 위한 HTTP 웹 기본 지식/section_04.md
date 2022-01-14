@@ -1,6 +1,6 @@
 # 모든 개발자를 위한 HTTP 웹 기본 지식
 
-## HTTP 프로토콜 - HTTP 기본
+## HTTP 프로토콜 - HTTP 메서드
 
 1. HTTP API를 만들어보자
 
