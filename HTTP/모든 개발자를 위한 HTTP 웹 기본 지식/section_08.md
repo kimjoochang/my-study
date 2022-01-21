@@ -73,3 +73,69 @@
         - 진짜 단순하게 ETag만 보내서 같으면 유지, 다르면 다시 받음
         - 캐시 제어 로직을 서버에서 완전히 관리
         - 클라이언트는 단순히 이 값을 서버에 제공(클라이언트는 캐시 메커니즘을 모름)
+
+4. 캐시와 조건부 요청 헤더
+
+    - Cache-Control : 캐시 제어
+
+        - Cache-Control: max-age
+            - 캐시 유효 시간, 초 단위
+
+        - Cache-Control: no-cache
+            - 데이터는 캐시해도 되지만, 항상 원(origin) 서버에 검증하고 사용
+
+        - Cache-Control: no-store
+            - 데이터에 민감한 정보가 있으므로 저장하면 안됨 (메모리에서 사용하고 최대한 빨리 삭제)
+
+    - Pragma : 캐시 제어(하위 호환)
+
+        - Pragma: no-cache
+
+        - HTTP 1.0 하위 호환
+
+    - Expires : 캐시 유효 기간(하위 호환)
+
+        - expires: Mon, 01 Jan 1990 00:00:00 GMT
+
+        - 캐시 만료일을 정확한 날짜로 지정
+
+        - HTTP 1.0부터 사용
+        
+        - 지금은 더 유연한 Cache-Control: max-age 권장
+
+        - Cache-Control: max-age와 함께 사용하면 Expires는 무시
+
+
+5. 프록시 캐시
+
+    - 원(origin)서버로부터 받아온 캐시를 더 가까운 곳에 저장하는 방식
+
+    - Cache-Control
+
+        - Cache-Control: public
+            - 응답이 public 캐시에 저장되어도 됨
+
+        - Cache-Control: private
+            - 응답이 해당 사용자만을 위한 것임, private 캐시에 저장해야 함(기본값)
+
+        - Cache-Control: s-maxage
+            - 프록시 캐시에만 적용되는 max-age
+
+        - Age: 60(HTTP 헤더)
+            - 오리진 서버에서 응답 후 프록시 캐시 내에 머문 시간(초)
+
+6. 캐시 무효화
+
+    - Cache-Control: no-cache
+        - 데이터는 캐시해도 되지만, 항상 원 서버에 검증하고 사용(이름에 주의!)
+
+    - Cache-Control: no-store
+        - 데이터에 민감한 정보가 있으므로 저장하면 안됨 (메모리에서 사용하고 최대한 빨리 삭제)
+
+    - Cache-Control: must-revalidate
+        - 캐시 만료 후 최초 조회시 원 서버에 검증해야함
+        - 원 서버 접근 실패 시 반드시 오류가 발생해야 함 -504(Gateway Timeout)
+        - must-revalidate는 캐시 유효 시간이라면 캐시를 사용
+    
+    - Pragma: no-cache
+        - HTTP 1.0 하위 호환
